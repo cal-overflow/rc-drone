@@ -11,7 +11,6 @@ const int escPO = A5;
 
 const int sRange[2]={0, 180};
 const int escRange[2]={1000, 2000};
-uint8_t data;
 uint16_t p;
 
 void setup() {
@@ -28,36 +27,25 @@ void setup() {
 } 
 
 void loop() {
-//    //Serial.println("This works");
-    uint8_t buf[3];
+    uint8_t buf[4];
     uint8_t buflen = sizeof(buf);
-    if (drone.recv(buf, &buflen)) // Non-blocking
-    {
-      int i;
-      // Message with a good checksum received, dump it.
-      Serial.print("Message: ");
-      Serial.println((char*)buf);
-    } 
-
-
-//  uint8_t datalen = sizeof(data);
-//  //Serial.println(drone.recv((uint8_t*)&data, &datalen));
-//  if (drone.recv((uint8_t*)&data, &datalen) && datalen == sizeof(data)) {
-//    uint8_t p = data;
-//
-//    // debugging purposes only:
-//    Serial.print("Received:");
-//    Serial.println(p);
-//    
-//  }
-//  
-// 
-//  //p = map(p, 0, 1023, sRange[0], sRange[1]);
-//  //p = map(p, 0, 255, sRange[0], sRange[1]);
-// // servo.write(p);
-//  
-//  //p = map(p, 0, 1023, escRange[0], escRange[1]);
-//  //ESC.write(p);
-
-  
+    if (drone.recv(buf, &buflen)) { // Non-blocking
+      char bufNumber[3];
+      for (int i = 0; i < buflen - 1; i++) {
+        bufNumber[i] = buf[i];
+      }
+      int p = atoi(bufNumber);
+      Serial.println(number);
+    
+      buf[0] = '0';
+      buf[1] = '0';
+      buf[2] = '0';
+    
+      //p = map(p, 0, 1023, sRange[0], sRange[1]);
+      //p = map(p, 0, 255, sRange[0], sRange[1]);
+      // servo.write(p);
+      
+      //p = map(p, 0, 1023, escRange[0], escRange[1]);
+      //ESC.write(p);
+    }
 }
