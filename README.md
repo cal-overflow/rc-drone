@@ -4,11 +4,19 @@ Designing a RC Airplane over the 2021 summer break.
 
 ### Arduino Libraries needed:
 
-* Servo
+* [PWMServo](https://github.com/PaulStoffregen/PWMServo)
 
-* RadioHead
+* [RadioHead](https://www.airspayce.com/mikem/arduino/RadioHead/index.html)
 
-[Official Arduino documentation for installing libraries](https://www.arduino.cc/en/guide/libraries)
+[Installing Arduino libraries](https://www.arduino.cc/en/guide/libraries)
+
+In order for these two libraries to work in the same Arduino sketch, The libraries cannot share the same timer.
+Change the  RadioHead timer to 2 by:
+
+1. Uncommenting the following line in `RH_ASK.cpp` (line 17 in version 1.41)
+        #define RH_ASK_ARDUINO_USE_TIMER2
+2. Adding the following line to both `RH_ASK.h` and `RadioHead.h`
+        #define RH_ASK_ARDUINO_USE_TIMER2
 
 ## Pin-Out requirements:
 
