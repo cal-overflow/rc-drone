@@ -7,6 +7,8 @@ const int potentiometerPO = A0;
 int p = 0;
 //int prevP = 0;
 char data[3];
+bool datasent[3] = {true, false, false};
+int counter = 0;
 
 void setup() {
   Serial.begin(9600); // debugging purposes only
@@ -21,8 +23,8 @@ void loop() {
   newP = map(newP, 0, 1023, 0, 255);
 
   // Only send new message if potentiometer value changed
+
   
-  //if (!(newP <= p+1 && newP >= p-1))  {
     Serial.println(newP);
     
   
@@ -62,12 +64,22 @@ void loop() {
         }
         consArray[3] = 'a';
     }
-  
+//    for(int i =0; i < sizeof(consArray); i++)
+//    {
+//      Serial.print(consArray[i]);
+//    }
+//    Serial.println();
     //Serial.println(consArray);
     controller.send((uint8_t *)consArray, strlen(consArray));
-    controller.waitPacketSent();
+//    delay(1);
+//    controller.send((uint8_t *)consArray, strlen(consArray));
+    //controller.waitPacketSent();
     
-    delay(10);
+    //delay(10);
     p = newP;
- // }
+
+  
+    //p = newP;
+
+  
 }

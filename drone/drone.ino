@@ -26,6 +26,31 @@ void setup() {
 } 
 
 void loop() {
+  servo.write(sRange[0]);
+  Serial.println("servo");
+  delay(500);
+  servo.write(sRange[1]);
+  delay(500);
+//    uint8_t buf[4];
+//    uint8_t buflen = sizeof(buf);
+//    if (drone.recv(buf, &buflen)) { // Non-blocking
+//      char bufNumber[3];
+//      for (int i = 0; i < buflen - 1; i++) {
+//        bufNumber[i] = buf[i];
+//      }
+//      int p = atoi(bufNumber);
+//      Serial.println(p);
+//    
+//      p = map(p, 0, 255, sRange[0], sRange[1]);
+//      Serial.println("writing to servo");
+//      servo.write(p);
+//      
+//      //p = map(p, 0, 1023, escRange[0], escRange[1]);
+//      //ESC.write(p);
+//      buf[0] = '0';
+//      buf[1] = '0';
+//      buf[2] = '0';
+//    }
     uint8_t buf[4];
     uint8_t buflen = sizeof(buf);
     if (drone.recv(buf, &buflen)) { // Non-blocking
@@ -48,5 +73,5 @@ void loop() {
       buf[1] = '0';
       buf[2] = '0';
     }
-    delay(5);
+    //delay(5);
 }
