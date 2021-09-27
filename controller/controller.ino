@@ -3,10 +3,13 @@
 #include <SPI.h>
 RH_ASK controller;
 
-const int potentiometerPO = A0;
+const int potentiometerP1 = A0;
+const int potentiometerP2 = A1;
 int p = 0;
+int p1 = 0;
+int p2 = 0;
 //int prevP = 0;
-char data[3];
+char data[6];
 bool datasent[3] = {true, false, false};
 int counter = 0;
 
@@ -19,67 +22,45 @@ void setup() {
 }
 
 void loop() {
-  int newP = analogRead(potentiometerPO);
-  newP = map(newP, 0, 1023, 0, 255);
+  int p1 = analogRead(potentiometerP1);
+  p1 = map(p1, 0, 1023, 0, 255);
 
-  // Only send new message if potentiometer value changed
+  char msg[3];
+  prepareMessage(msg, p1, 'a');
 
-  
-    Serial.println(newP);
+  controller.send((uint8_t *)msg, strlen(msg));
+
+  int p2 = analogRead(potentiometerP2);
+  p2 = map(p2, 0, 1023, 0, 255);
+
+  prepareMessage(msg, p1, 'b');
+
+  controller.send((uint8_t *)msg, strlen(msg));
+  //controller.waitPacketSent();
     
-  
-    sprintf(data, "%d", newP);
-  //  char newArray[sizeof(data)];
-  //  int j = sizeof(newArray)-1;
-  //  for(int i = sizeof(data)-1; i >= 0; i--)
-  //  {
-  //      newArray[j-i] = data[i];
-  //      
-  //  }
-  //  Serial.println(strlen(consArray));
-    //itoa(p, data, 10);
-    //data[3] = 'a';
-    //data[4] ='\0';
-    //for (int i = 0; i < strlen(data); i++)  {
-      //Serial.print(data[i]);
-    //}
-    //Serial.println(strlen(data));
-    //const char *msg = "Heloo World";
-    char consArray[4];
-    if(strlen(data) < 3 && strlen(data) >1){
-      consArray[0] ='0';
-      consArray[1] = data[0];
-      consArray[2] = data[1];
-      consArray[3] = 'a';
-    }
-    else if(strlen(data)< 2){
-      consArray[0] ='0';
-      consArray[1] = '0';
-      consArray[2] = data[0]; 
-      consArray[3] = 'a';
-    }
-    else{
-      for(int i =0; i < strlen(data); i++){
-        consArray[i] = data[i];
-        }
-        consArray[3] = 'a';
-    }
-//    for(int i =0; i < sizeof(consArray); i++)
-//    {
-//      Serial.print(consArray[i]);
-//    }
-//    Serial.println();
-    //Serial.println(consArray);
-    controller.send((uint8_t *)consArray, strlen(consArray));
-//    delay(1);
-//    controller.send((uint8_t *)consArray, strlen(consArray));
-    //controller.waitPacketSent();
+  //delay(10);
+//  p = newP;
+}
+
+void prepareMessage(char* result, int p, char suffix) {
+  char data[6];
+  sprintf(data, "%d", p);
+
+  if (strlen(data) == 1){
+    result[0] ='0';
+    result[1] = '0';
+    result[2] = data[0]; 
     
-    //delay(10);
-    p = newP;
-
-  
-    //p = newP;
-
-  
+  }
+  else if (strlen(data) == 2){
+    result[0] ='0';
+    result[1] = data[0];
+    result[2] = data[1];
+  }
+  else {
+    result[0] = data[0];
+    result[1] = data[1];
+    result[2] = data[2];
+  }
+  result[3] = suffix;
 }
