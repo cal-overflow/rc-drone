@@ -1,6 +1,6 @@
 ## Fixed-Wing RC Drone
 
-| [![3D Model](/docs/DronePT1.JPG)](/docs/DronePT1.JPG) |
+| ![3D Model](/docs/DronePT1.JPG) |
 | :--: |
 | First 3D Model |
 
@@ -10,9 +10,13 @@
 
 
 #### Design Documents
-[Controller Design](./docs/Controller%20Design%20Document.pdf)
+<a href="http://christianlisle.github.io/rc-drone/docs/Controller%20Design%20Document.pdf" target="_blank">
+  Controller Design
+</a>
 
-[Structure Design](./docs/Structure%20Design%20Document.pdf)
+<a href="http://christianlisle.github.io/rc-drone/docs/Structure%20Design%20Document.pdf" target="_blank">
+  Structure Design
+</a>
 
 ---
 
