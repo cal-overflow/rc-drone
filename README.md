@@ -10,13 +10,13 @@
 
 
 #### Design Documents
-<a href="http://christianlisle.github.io/rc-drone/docs/Controller%20Design%20Document.pdf" target="_blank">
+<p><a href="http://christianlisle.github.io/rc-drone/docs/Controller%20Design%20Document.pdf" target="_blank">
   Controller Design
-</a>
+</a></p>
 
-<a href="http://christianlisle.github.io/rc-drone/docs/Structure%20Design%20Document.pdf" target="_blank">
+<p><a href="http://christianlisle.github.io/rc-drone/docs/Structure%20Design%20Document.pdf" target="_blank">
   Structure Design
-</a>
+</a></p>
 
 ---
 
