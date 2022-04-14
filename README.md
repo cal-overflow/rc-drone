@@ -10,9 +10,9 @@
 
 
 #### Design Documents
-[Controller Design](/docs/Controller%20Design%20Document.pdf)
+[Controller Design](./docs/Controller%20Design%20Document.pdf)
 
-[Structure Design](/docs/Structure%20Design%20Document.pdf)
+[Structure Design](./docs/Structure%20Design%20Document.pdf)
 
 ---
 
