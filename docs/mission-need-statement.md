@@ -4,7 +4,7 @@
 
 [*Spencer Dunham*](https://github.com/Sdunham01), Project Lead
 
-[*Christian Lisle*](), Software Lead
+[*Christian Lisle*](https://github.com/ChristianLisle), Software Lead
 
 [*Gautham Ajith*](http://github.com/gajith0104), Embedded Systems Lead
 
