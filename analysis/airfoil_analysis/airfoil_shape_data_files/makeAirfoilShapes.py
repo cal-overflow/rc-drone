@@ -14,7 +14,6 @@ def shape2string(shape):
     return(outString)
     
  
-numberOfAirfoils = 25
 
 #defines all x, y points for airfoil creation  
 yPos = [.125,.25,.375,.5]
