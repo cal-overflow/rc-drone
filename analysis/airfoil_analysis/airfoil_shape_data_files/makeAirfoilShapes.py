@@ -27,28 +27,22 @@ fileName = []
 for x in range(numberOfAirfoils):
     fileName.append("airfoil"+str(x+1)+".dat")
 
-#index 0 is x position, index 1 is y position
-points = []
-
-#creates first shape
-points.append([0,0])
-points.append([1,0])
-points.append([xPosLow[0],yPos[0]])
-points.append([xPosHigh[4],yPos[0]])
 
 shapes = []
-i = 0
+
+
 for a in range(ySize):
     for b in range(len(xPosHigh)):
         for c in range(len(xPosLow)):
-            if xPosLow[c] > xPosHigh[b]:
+            if xPosLow[c] >= xPosHigh[b]:
                 break
+            else:
+                shapes.append([[0,0],[1,0],[xPosHigh[b],yPos[a]],[xPosLow[c],yPos[a]]])
 
-            points[3] = [xPosLow[c],yPos[a]]
-            points[2] = [xPosHigh[b],yPos[a]]
-            shapes.append(points)
+        
 
-for i in range(numberOfAirfoils):
+for i in range(len(shapes)):
     f = open(fileName[i], "w")
     f.write(shape2string(shapes[i]))
     f.close()
+
